@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Love Me Valentine</title>
+  <title>For My Love ❤️</title>
 
   <style>
     * {
@@ -15,10 +15,10 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
+      background: linear-gradient(135deg, #ffd9e8, #fff1f6);
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ffd6e7, #ffeef5);
       overflow-x: hidden;
       position: relative;
       padding: 20px;
@@ -30,27 +30,31 @@
       font-size: 24px;
       animation: float 6s infinite ease-in-out;
       pointer-events: none;
+      z-index: 0;
     }
 
-    .heart:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-    .heart:nth-child(2) { top: 20%; right: 20%; animation-delay: 1s; }
-    .heart:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 2s; }
-    .heart:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 3s; }
-    .heart:nth-child(5) { top: 50%; left: 8%; animation-delay: 4s; }
-    .heart:nth-child(6) { top: 60%; right: 10%; animation-delay: 5s; }
+    .heart:nth-child(1) { top: 8%; left: 10%; animation-delay: 0s; }
+    .heart:nth-child(2) { top: 18%; right: 12%; animation-delay: 1s; }
+    .heart:nth-child(3) { top: 45%; left: 6%; animation-delay: 2s; }
+    .heart:nth-child(4) { bottom: 18%; right: 10%; animation-delay: 3s; }
+    .heart:nth-child(5) { bottom: 8%; left: 16%; animation-delay: 4s; }
+    .heart:nth-child(6) { top: 65%; right: 20%; animation-delay: 5s; }
+    .heart:nth-child(7) { top: 30%; left: 25%; animation-delay: 2.5s; }
+    .heart:nth-child(8) { bottom: 30%; right: 28%; animation-delay: 1.5s; }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-18px) scale(1.08); }
     }
 
     .container {
       width: 100%;
-      max-width: 560px;
-      background: white;
-      padding: 30px 22px 35px;
-      border-radius: 24px;
-      box-shadow: 0 10px 30px rgba(255, 77, 136, 0.2);
+      max-width: 600px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 28px;
+      padding: 28px 22px 34px;
+      box-shadow: 0 14px 40px rgba(255, 77, 136, 0.18);
       text-align: center;
       position: relative;
       z-index: 2;
@@ -58,7 +62,7 @@
 
     .screen {
       display: none;
-      animation: fadeIn 0.5s ease;
+      animation: fadeIn 0.7s ease;
     }
 
     .screen.active {
@@ -68,53 +72,61 @@
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: scale(0.96);
+        transform: translateY(10px) scale(0.97);
       }
       to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0) scale(1);
       }
     }
 
     .main-gif {
-      width: 180px;
+      width: 190px;
       max-width: 100%;
-      border-radius: 16px;
-      margin-bottom: 20px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
 
     h1, h2 {
       color: #ff4d88;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 28px;
     }
 
     p {
       color: #666;
+      line-height: 1.6;
       font-size: 16px;
-      line-height: 1.5;
-      margin-top: 8px;
     }
 
     .buttons {
       position: relative;
       width: 100%;
-      height: 140px;
-      margin-top: 18px;
+      height: 150px;
+      margin-top: 20px;
     }
 
     button {
-      padding: 14px 28px;
-      font-size: 18px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
+      padding: 14px 26px;
+      font-size: 17px;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.25s ease;
-      font-weight: bold;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.12);
     }
 
     button:hover {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
 
     #yes, #no {
@@ -122,52 +134,83 @@
     }
 
     #yes {
+      left: 85px;
+      top: 35px;
       background: #ff4d88;
       color: white;
-      left: 70px;
-      top: 30px;
     }
 
     #no {
-      background: #b0b0b0;
+      left: 270px;
+      top: 35px;
+      background: #a8a8a8;
       color: white;
-      left: 240px;
-      top: 30px;
     }
 
-    .next-btn {
+    .next-btn,
+    .music-btn,
+    .final-btn,
+    .back-btn {
       margin-top: 22px;
       background: #ff4d88;
       color: white;
+      position: static;
+    }
+
+    .music-btn {
+      background: #ff77a8;
+      margin-left: 8px;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
     }
 
     .gallery-title {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .gallery-text {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .photo-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 18px;
       margin-top: 18px;
     }
 
     .photo-card {
-      background: #fff4f8;
-      border-radius: 20px;
+      background: #fff5f8;
       padding: 10px;
-      box-shadow: 0 4px 14px rgba(255, 77, 136, 0.12);
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(255, 77, 136, 0.12);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: photoShow 0.8s ease forwards;
+    }
+
+    .photo-card:nth-child(1) { animation-delay: 0.1s; }
+    .photo-card:nth-child(2) { animation-delay: 0.35s; }
+    .photo-card:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes photoShow {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .photo-card img {
       width: 100%;
-      max-height: 500px;
+      max-height: 520px;
       object-fit: cover;
-      border-radius: 14px;
+      border-radius: 16px;
       display: block;
     }
 
@@ -179,25 +222,76 @@
       font-weight: bold;
     }
 
+    .love-note {
+      margin-top: 20px;
+      background: #fff4f8;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: inset 0 0 0 1px rgba(255, 77, 136, 0.08);
+    }
+
+    .love-note p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .big-heart {
+      font-size: 60px;
+      margin-bottom: 10px;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    .floating-hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 3;
+    }
+
+    .burst-heart {
+      position: absolute;
+      bottom: 0;
+      font-size: 22px;
+      animation: riseUp 2.8s linear forwards;
+      opacity: 0.9;
+    }
+
+    @keyframes riseUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 24px 16px 28px;
       }
 
       h1 {
-        font-size: 26px;
+        font-size: 27px;
       }
 
       h2 {
-        font-size: 22px;
+        font-size: 23px;
       }
 
       .buttons {
-        height: 160px;
+        height: 165px;
       }
 
       #yes {
-        left: 25px;
+        left: 20px;
       }
 
       #no {
@@ -205,8 +299,8 @@
       }
 
       button {
+        font-size: 15px;
         padding: 12px 20px;
-        font-size: 16px;
       }
 
       .photo-card img {
@@ -223,12 +317,18 @@
   <div class="heart">❤</div>
   <div class="heart">❤</div>
   <div class="heart">❤</div>
+  <div class="heart">❤</div>
+  <div class="heart">❤</div>
+
+  <div class="floating-hearts-container" id="floatingHearts"></div>
 
   <div class="container">
 
+    <!-- 1. EKRAN -->
     <div id="screen1" class="screen active">
       <img class="main-gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="cute gif">
       <h1>Do You Love Me? ❤️</h1>
+      <p>Be careful... there is only one correct answer 😌</p>
 
       <div class="buttons">
         <button id="yes">Yes ❤️</button>
@@ -236,47 +336,123 @@
       </div>
     </div>
 
+    <!-- 2. EKRAN -->
     <div id="screen2" class="screen">
       <img class="main-gif" src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif" alt="love gif">
       <h2>Yaaayyy 😍💖</h2>
-      <p>I knew it! <br>You just made me the happiest person ever 💕</p>
-      <button id="openGallery" class="next-btn">Click Me 💌</button>
+      <p>
+        I knew it...<br>
+        You just made this page even more beautiful 💕
+      </p>
+
+      <div class="button-row">
+        <button id="openGallery" class="next-btn">Click Me 💌</button>
+        <button id="musicBtn" class="music-btn">Şarkıyı Aç 🎵</button>
+      </div>
     </div>
 
+    <!-- 3. EKRAN -->
     <div id="screen3" class="screen">
       <h2 class="gallery-title">Our Memories 📸💖</h2>
-      <p class="gallery-text">These are my favorite moments with you ✨</p>
+      <p class="gallery-text">Her fotoğraf ayrı bir güzel an ✨</p>
 
       <div class="photo-grid">
         <div class="photo-card">
           <img src="IMG_6112.JPG" alt="Memory 1">
-          <span>My favorite selfie 💕</span>
+          <span>En tatlı selfielerden biri 💕</span>
         </div>
 
         <div class="photo-card">
           <img src="IMG_1866.JPG" alt="Memory 2">
-          <span>Beautiful night together ✨</span>
+          <span>Birlikte en güzel gecelerden biri ✨</span>
         </div>
 
         <div class="photo-card">
           <img src="IMG_6131.JPG" alt="Memory 3">
-          <span>One more cute memory 💗</span>
+          <span>Bir başka güzel anımız 💗</span>
         </div>
+      </div>
+
+      <button id="openFinal" class="final-btn">Son Mesaj 💘</button>
+    </div>
+
+    <!-- 4. EKRAN -->
+    <div id="screen4" class="screen">
+      <div class="big-heart">💖</div>
+      <h2>Just For You</h2>
+
+      <div class="love-note">
+        <p>
+          Seninle geçen her an daha güzel, daha özel ve daha anlamlı.
+          <br><br>
+          İyi ki varsın. İyi ki hayatımdasın. 💕
+          <br><br>
+          Bu küçük site de sana olan sevgimin minicik bir parçası sadece... ❤️
+        </p>
+      </div>
+
+      <div class="button-row">
+        <button id="restartBtn" class="back-btn">Başa Dön 🔁</button>
+        <button id="musicBtn2" class="music-btn">Şarkıyı Aç 🎵</button>
       </div>
     </div>
 
   </div>
 
+  <audio id="loveSong" loop>
+    <source src="ask.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
     const openGalleryBtn = document.getElementById("openGallery");
+    const openFinalBtn = document.getElementById("openFinal");
+    const restartBtn = document.getElementById("restartBtn");
+    const musicBtn = document.getElementById("musicBtn");
+    const musicBtn2 = document.getElementById("musicBtn2");
 
     const buttons = document.querySelector(".buttons");
+    const floatingHearts = document.getElementById("floatingHearts");
+    const loveSong = document.getElementById("loveSong");
 
     const screen1 = document.getElementById("screen1");
     const screen2 = document.getElementById("screen2");
     const screen3 = document.getElementById("screen3");
+    const screen4 = document.getElementById("screen4");
+
+    function showScreen(hideScreen, showScreenEl) {
+      hideScreen.classList.remove("active");
+      showScreenEl.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function burstHearts(count = 18) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement("div");
+        heart.className = "burst-heart";
+        heart.textContent = ["❤", "💖", "💕", "💘"][Math.floor(Math.random() * 4)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (2 + Math.random() * 1.8) + "s";
+        heart.style.fontSize = (18 + Math.random() * 18) + "px";
+        floatingHearts.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 3000);
+      }
+    }
+
+    function playMusic() {
+      loveSong.play()
+        .then(() => {
+          musicBtn.textContent = "Şarkı Çalıyor 🎶";
+          musicBtn2.textContent = "Şarkı Çalıyor 🎶";
+        })
+        .catch(() => {
+          alert("Müzik başlamadıysa repo içine ask.mp3 dosyasını yüklemen gerekiyor.");
+        });
+    }
 
     noBtn.addEventListener("mouseover", () => {
       const maxX = buttons.clientWidth - noBtn.clientWidth;
@@ -290,14 +466,26 @@
     });
 
     yesBtn.addEventListener("click", () => {
-      screen1.classList.remove("active");
-      screen2.classList.add("active");
+      burstHearts(20);
+      showScreen(screen1, screen2);
     });
 
     openGalleryBtn.addEventListener("click", () => {
-      screen2.classList.remove("active");
-      screen3.classList.add("active");
+      burstHearts(14);
+      showScreen(screen2, screen3);
     });
+
+    openFinalBtn.addEventListener("click", () => {
+      burstHearts(24);
+      showScreen(screen3, screen4);
+    });
+
+    restartBtn.addEventListener("click", () => {
+      showScreen(screen4, screen1);
+    });
+
+    musicBtn.addEventListener("click", playMusic);
+    musicBtn2.addEventListener("click", playMusic);
   </script>
 
 </body>
