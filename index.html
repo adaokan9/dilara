@@ -1,119 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Me Valentine</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Me Valentine</title>
 
-<style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body{
-background:#ffd6e7;
-font-family: Arial, Helvetica, sans-serif;
-text-align:center;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+      overflow-x: hidden;
+      position: relative;
+      padding: 20px;
+    }
 
-.container{
-position:relative;
-}
+    .heart {
+      position: absolute;
+      color: rgba(255, 77, 136, 0.18);
+      font-size: 24px;
+      animation: float 6s infinite ease-in-out;
+      pointer-events: none;
+    }
 
-h1{
-font-size:35px;
-color:#ff4d88;
-}
+    .heart:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+    .heart:nth-child(2) { top: 20%; right: 20%; animation-delay: 1s; }
+    .heart:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 2s; }
+    .heart:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 3s; }
+    .heart:nth-child(5) { top: 50%; left: 8%; animation-delay: 4s; }
+    .heart:nth-child(6) { top: 60%; right: 10%; animation-delay: 5s; }
 
-.buttons{
-margin-top:20px;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
 
-button{
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-position:absolute;
-}
+    .container {
+      width: 100%;
+      max-width: 560px;
+      background: white;
+      padding: 30px 22px 35px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(255, 77, 136, 0.2);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
 
-#yes{
-background:#ff4d88;
-color:white;
-left:50px;
-}
+    .screen {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
 
-#no{
-background:#999;
-color:white;
-left:200px;
-}
+    .screen.active {
+      display: block;
+    }
 
-#result{
-margin-top:40px;
-font-size:30px;
-color:#ff4d88;
-display:none;
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-img{
-width:200px;
-margin-bottom:20px;
-}
+    .main-gif {
+      width: 180px;
+      max-width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
 
-</style>
+    h1, h2 {
+      color: #ff4d88;
+      margin-bottom: 14px;
+    }
 
+    p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      margin-top: 18px;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-weight: bold;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #yes,
+    #no {
+      position: absolute;
+    }
+
+    #yes {
+      background: #ff4d88;
+      color: white;
+      left: 70px;
+      top: 30px;
+    }
+
+    #no {
+      background: #b0b0b0;
+      color: white;
+      left: 240px;
+      top: 30px;
+    }
+
+    .next-btn {
+      margin-top: 22px;
+      background: #ff4d88;
+      color: white;
+    }
+
+    .gallery-title {
+      margin-bottom: 8px;
+    }
+
+    .gallery-text {
+      margin-bottom: 20px;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .photo-card {
+      background: #fff4f8;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 4px 14px rgba(255, 77, 136, 0.12);
+    }
+
+    .photo-card img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .photo-card span {
+      display: block;
+      margin-top: 10px;
+      color: #ff4d88;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 24px 16px 28px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .buttons {
+        height: 160px;
+      }
+
+      #yes {
+        left: 25px;
+      }
+
+      #no {
+        left: 155px;
+      }
+
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+
+      .photo-card img {
+        max-height: 420px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <div class="heart">❤</div>
+  <div class="heart">❤</div>
+  <div class="heart">❤</div>
+  <div class="heart">❤</div>
+  <div class="heart">❤</div>
+  <div class="heart">❤</div>
 
-<img id="gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+  <div class="container">
 
-<h1>Do You Love Me ? ❤️</h1>
+    <!-- 1. ekran -->
+    <div id="screen1" class="screen active">
+      <img
+        class="main-gif"
+        src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+        alt="cute gif"
+      >
 
-<div class="buttons">
-<button id="yes">Yes ❤️</button>
-<button id="no">No 💔</button>
-</div>
+      <h1>Do You Love Me? ❤️</h1>
 
-<h2 id="result">I knew it 😍</h2>
+      <div class="buttons">
+        <button id="yes">Yes ❤️</button>
+        <button id="no">No 💔</button>
+      </div>
+    </div>
 
-</div>
+    <!-- 2. ekran -->
+    <div id="screen2" class="screen">
+      <img
+        class="main-gif"
+        src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif"
+        alt="love gif"
+      >
 
-<script>
+      <h2>Yaaayyy 😍💖</h2>
+      <p>
+        I knew it! <br>
+        You just made me the happiest person ever 💕
+      </p>
 
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
-const result = document.getElementById("result");
+      <button id="openGallery" class="next-btn">Click Me 💌</button>
+    </div>
 
-noBtn.addEventListener("mouseover", () => {
+    <!-- 3. ekran -->
+    <div id="screen3" class="screen">
+      <h2 class="gallery-title">Our Memories 📸💖</h2>
+      <p class="gallery-text">These are my favorite moments with you ✨</p>
 
-const container = document.querySelector(".container");
+      <div class="photo-grid">
+        <div class="photo-card">
+          <img src="IMG_6112.jpeg" alt="Memory 1">
+          <span>My favorite selfie 💕</span>
+        </div>
 
-const maxX = container.clientWidth - noBtn.clientWidth;
-const maxY = container.clientHeight - noBtn.clientHeight;
+        <div class="photo-card">
+          <img src="IMG_1867.jpeg" alt="Memory 2">
+          <span>Beautiful night together ✨</span>
+        </div>
 
-const randomX = Math.floor(Math.random() * maxX);
-const randomY = Math.floor(Math.random() * maxY);
+        <div class="photo-card">
+          <img src="IMG_6131.jpeg" alt="Memory 3">
+          <span>One more cute memory 💗</span>
+        </div>
+      </div>
+    </div>
 
-noBtn.style.left = randomX + "px";
-noBtn.style.top = randomY + "px";
+  </div>
 
-});
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const openGalleryBtn = document.getElementById("openGallery");
 
-yesBtn.addEventListener("click", () => {
+    const buttons = document.querySelector(".buttons");
 
-result.style.display = "block";
-document.getElementById("gif").src =
-"https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif";
+    const screen1 = document.getElementById("screen1");
+    const screen2 = document.getElementById("screen2");
+    const screen3 = document.getElementById("screen3");
 
-});
+    noBtn.addEventListener("mouseover", () => {
+      const maxX = buttons.clientWidth - noBtn.clientWidth;
+      const maxY = buttons.clientHeight - noBtn.clientHeight;
 
-</script>
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      screen1.classList.remove("active");
+      screen2.classList.add("active");
+    });
+
+    openGalleryBtn.addEventListener("click", () => {
+      screen2.classList.remove("active");
+      screen3.classList.add("active");
+    });
+  </script>
 
 </body>
 </html>
